@@ -4,11 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="hangman.css">
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+    crossorigin="anonymous"
+  />
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <title>Game</title>
   </head>
   <body>
-    <div class="container"></div>
+    <div id="hangMan">
+      <div class="indicator">
+        <span class="remaining">5</span>/<span class="maxTry">5</span>
+      </div>
+      <div class="hangman">
+        <div class="shaft"></div>
+        <div class="pole"></div>  
+        <div class="rope"></div>
+        <div class="base"></div>
+        <div class="man">
+          <div class="wrapperMan">
+          <div class="face">
+            <span class="eyes">x</span>
+            <span class="eyes">x</span><br>
+            <p class="mouth">-</p>
+          </div>
+          <div class="hands"></div>
+          <div class="legs"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+    </div>
     <button class="startBtn">Start Game</button>
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"

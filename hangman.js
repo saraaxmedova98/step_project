@@ -1,31 +1,31 @@
 $(document).ready(function(){
     var questions={
-        "Animals": ["turtle" , "dragon","sheep","snake","monkey","penguin","giraffe","butterfly","eagle","goat","dolphin","hippo","lizard","kangaroo","beetle","camel","cow"],
-        "Buildings": ["house","apartment"],
-        "Places": ["bedroom","bathroom","restaurant","shopping","kitchen","store","caridor","classroom","library","playgrond","supermarket"],
+        "Animals": ["turtle" , "dragon","sheep","snake","monkey","penguin","giraffe","butterfly","peacock butterfly","eagle","goat","dolphin","hippo","lizard","kangaroo","beetle","camel","cow"],
+        "Buildings": ["villa","garage","zoo","house","park","factory","stadium","church","castle","tunnel","movie theater","airport","hospital","apartment","pet store","florist"],
+        "Places": ["bedroom","bathroom","restaurant","shopping","monuments","kitchen","store","book shop","caridor","classroom","library","playgrond","supermarket","cafe",'service station',"church"],
         "Kitchen": ["123","22"],
-        "Personal": ["phone","credit card","headphones","suitcase","watch","money","purse","wallet","newspaper","flaslight","book"],
-        "Sports": ["cycling","wrestling","swimming","badminton","skiing","running","golf","skateboarding","boxing","volleyball","tennis","bowling","cricket"],
+        "Personal": ["phone","headphones","suitcase","watch","money","purse","wallet","newspaper","id card","flaslight","book","laptop","mug","key",'brush',"bed","credit card"],
+        "Sports": ["cycling","wrestling","swimming","badminton","skiing","running","golf","figure skating","skateboarding","boxing","volleyball","tennis","bowling","cricket"],
         "Nature": ["tornado","lake","island","snow","flower","the moon","volcano","planet","rainbow","the sun","clouds","desert","mountain","stars","wind"],
-        "Music": ["1237","227"],
-        "Jobs": ["policemen","nurse","teacher","dancer","computer technician","cashier","hairdresser","doctor","mechanic","designer","receptionist" ,"politician","electrician",'farmer'],
-        "Colors": ["red","yellow","green","pink","blue","purple","brown","white","black","grey","orange"],
-        "Clothes": ["tshirt","suit", "belt","pants","dress","ring","skirt","shirt","shoes","glasses","hat","watch","bag","sweater","umbrella"],
-        "Body": ["1235","225"],
-        "Food": ["chicken","candy","ketchup","chocolate","hamburger","bread","eggs","sushi","wine","pepper","stake","lemonade","kebabs","pizza","waffle","spaghetti","cheeseburger","cheese","bread rolls","fried eggs"],
+        "Music": ["accordion","piano","violin","banjo","drums","clarinet","flute","piccolo","gong","electric guitar","viola","bugle","cymbals","organ","trombone","saxophone","maracas"],
+        "Jobs": ["policemen","nurse","teacher","dancer","cashier","designer","doctor","office clerk","hairdresser","mechanic","receptionist","politician",'farmer',"computer technician" ,"electrician","secretary"],
+        "Colors": ["red","yellow","green","pink","blue","purple","brown","white","black","orange","pea green","grey","aquamarine","crimson","olive","lime","silver","maroon"],
+        "Clothes": ["tshirt","suit", "belt","pants","dress","ring","skirt","shirt","shoes","glasses","hat","sun hat","watch","bag","sweater","umbrella","stockings","panties"],
+        "Body": ["shoulder","mouth","forehead","neck","ear","head","chin","face","forearm","knee","foot","thumb"],
+        "Food": ["chicken","candy","ketchup","chocolate","hamburger","bread","eggs","sushi","tuna steak","wine","pepper","stake","lemonade","kebabs","pizza","waffle","spaghetti","bread rolls","cheeseburger","cheese","fried eggs"],
         "Fruits": ["banana","apple","cherry","blueberry","blackberry","coconut","nectarine","peach","passion fruit","watermelon","strawberry","quince","pineapple"],
-        "Vegetables": ["carrots","cabbage","garlic","mushrooms","cucumber","peaches","tomatoes","broccoli","pepper","rice","avocado","Pumpkin","olive"],
-        "Transport": ["bike","ambulance","motorbike","tracktor","escalator","helicopter","skateboard","moped","train","plane","scooter","rocket"],
-        "Things": ["broke","224"],
-        "Thigs": ["broken","broog"],
+        "Vegetables": ["carrots","cabbage","garlic","mushrooms","cucumber","peaches","green pepper ","tomatoes","broccoli","pepper","rice","avocado","pumpkin","olive","lettuce"],
+        "Transport": ["bike","ambulance","motorbike","tracktor","escalator","helicopter","cement mixer","skateboard","moped","train","plane","scooter","rocket","bicycle"],
+        "Subjects": ["algebra","geometry","biology","physics","math","chemistry","music","information technology","geography","art","literacy",'geography',"arithmetic","english"],
+        "Computer": ["keyboard","mouse","microphone","monitor","printer","camera","speakers","web camera","scanner","headphones","case","chip","joystick","hard drive"],
     }
     $(".startBtn").click(function() {
-          $(this).toggle(500);
+          $(this).css("display","none");
           generateQuestions()
     })
   
     function generateQuestions(){
-        var select_content="<div class='content_container'><div class='select_content' ><h2 class='h2'>Select Content</h2><div class='p'></div></div></div>"
+        var select_content="<div class='content_container'><div class='select_content' ><h1 class='h2'>Select Content</h1><div class='p'></div></div></div>"
         var ul = "<ul class='ul'></ul>"
         $(".container").append(select_content)
         $(".container").append(ul)
@@ -36,6 +36,9 @@ $(document).ready(function(){
                 var li_text= $(this).text()
                 $(".h2").text(li_text)
                 $(".p").text(questions[li_text])
+            },function(){
+                $(".h2").text("Select Content")
+                $(".p").text("")
             })
         }
         var letter_arr=[]
@@ -52,7 +55,7 @@ $(document).ready(function(){
        var selected_word;
        $(".remaining").text(lives)
        $(".maxTry").text(lives)
-    $(".li").click(function(){
+       function CssStyles(){
         $("#hangMan").css("display","block")
         $(".pole").css("opacity", 0)
         $(".shaft").css("opacity", 0)
@@ -62,15 +65,21 @@ $(document).ready(function(){
         $(".hands").css("opacity", 0)
         $(".legs").css("opacity", 0)
         $(".container").empty()
+       }
+    $(".li").click(function(){
+       CssStyles()
+       $(".score b").text(score)
         var hangman_img="<div class='hangman_img'></div>"
         var finding_word=`<div class='finding_word'></div>`
         var letters = `<div class='letters'></div>`
         var next_btn=`<div class='next_btn_container'><button class='next_btn'>NEXT WORD<i class="fas fa-arrow-right"></i>  </button></div>`
-        var game_over=`<div class='game_over_container'><button class='game_over'>GAME OVER <i class="far fa-sad-cry"></i> </button></div>`
+        var game_over=`<div class='game_over_container'><button class='game_over'>GAME OVER <i class="far fa-sad-tear"></i></button></div>`
         $(".container").append(hangman_img,finding_word,letters,next_btn,game_over)
         Getletters("A","Z")
         for(i in letter_arr){
-            var letters_spans=`<button class='letters_spans'>${letter_arr[i]}</button>`
+            var lowerCaseLetters=letter_arr[i].toLowerCase()
+            // console.log(lowerCaseLetters)
+            var letters_spans=`<button class='letters_spans ${letter_arr[i]}'>${letter_arr[i]}</button>`
             $(".letters").append(letters_spans)
         }
                 questions_arr=questions[$(this).text()]
@@ -80,7 +89,13 @@ $(document).ready(function(){
                     selected_word=questions_arr[word]
                     console.log(selected_word)
                     for(var i=0;i<selected_word.length;i++){
-                        var words_letters=`<span class='words_letters ${selected_word[i]}'>_</span>`
+                        if(selected_word.indexOf(" ") == -1){
+                            var words_letters=`<span class='words_letters ${selected_word[i]}'>_</span>`
+                        }
+                        else{
+                            var words_letters=`<span class='words_letters ${selected_word[i]}'>_</span>`
+                            $(".words_letters").eq(selected_word.indexOf(" ")).text("")
+                        }
                         // if(selected_word.indexOf(" ") != -1){
                         //     $(".words_letters").eq(selected_word.indexOf(" ")).removeClass("words_letters")
                         //    console.log( $(".words_letters").eq(selected_word.indexOf(" ")),selected_word.indexOf(" "))
@@ -91,20 +106,7 @@ $(document).ready(function(){
                    }
                 wordsLetters()
                 console.log(word, questions_arr[word])
-                
-                $(".letters_spans").click(function(){
-                    $(this).prop("disabled",true)
-                    $(this).css("opacity",0.5)
-                    var current_text=$(this).text().toLowerCase()
-                    if(selected_word.includes(current_text)){
-                        $(`.${current_text}`).text(current_text)
-                        $(`.${current_text}`).addClass(`exist`)
-                        $(`.words_letters`).removeClass(`${current_text}`)
-                    }
-                    else{
-                        lives -=1
-                        
-                    }
+                function decreasingLives(){
                     if(lives==9){
                         $(".pole").css("opacity", 1)
                     }
@@ -135,21 +137,52 @@ $(document).ready(function(){
                         $(".pole").css({
                             "height":"252px","top": "-9px"
                     })
-
                         $(".letters_spans").prop("disabled",true).css("opacity",0.5)
                         $(".game_over").css("display", "block")
-                        
+                        $(".indicator").css("display", "none")
+                        // break;
                     }
-                    console.log(lives)
+                }
+                function winnerCase(){
                     $(".remaining").text(lives)
+                    if(selected_word.indexOf(" ") == -1){
                     if($(".exist").length == selected_word.length && lives > 0){
                         score +=1
                        console.log("yoy win")
                        $(".letters_spans").prop("disabled",true).css("opacity",0.5)
                        $(".next_btn").css("display", "block")
                        $(`.words_letters`).removeClass(`exist`)
+                       $(".score b").text(score)
                        
                     }
+                }
+                else{
+                    if($(".exist").length == selected_word.length-1 && lives > 0){
+                        score +=1
+                        console.log("yoy win")
+                        $(".letters_spans").prop("disabled",true).css("opacity",0.5)
+                        $(".next_btn").css("display", "block")
+                        $(`.words_letters`).removeClass(`exist`)
+                        $(".score b").text(score)
+                    }
+                }
+                }
+                $(".letters_spans").click(function(){
+                    $(this).prop("disabled",true)
+                    $(this).css("opacity",0.5)
+                    var current_text=$(this).text().toLowerCase()
+                    if(selected_word.includes(current_text)){
+                        $(`.${current_text}`).text(current_text)
+                        $(`.${current_text}`).addClass(`exist`)
+                        $(`.words_letters`).removeClass(`${current_text}`)
+                    }
+                    else{
+                        lives -=1
+                    }
+                    decreasingLives()
+                    winnerCase()
+                    console.log(lives)
+                   
                 })
                 $(".next_btn").click(function(){
                     // generateQuestions()
@@ -178,14 +211,35 @@ $(document).ready(function(){
                 })
                     $("#hangMan").css("display","none")
                     $(".container").empty()
+                    $(".indicator").css("display", "block")
                     generateQuestions()
                 })
 
+                $(document).keypress(function(e){
+                    console.log(e.key,selected_word)
+                    
+                    var lovercase=e.key.toUpperCase()
+                    $(`.${lovercase}`).prop("disabled",true)
+                     $(`.${lovercase}`).css("opacity",0.5) 
+                    if(selected_word.includes(e.key)){
+                        $(`.${e.key}`).text(e.key)
+                        $(`.${e.key}`).addClass(`exist`)
+                        $(`.words_letters`).removeClass(`${e.key}`)
+                    }
+                    else{
+                        lives -=1   
+                    }
+                    console.log(lives)
+                    $(".remaining").text(lives)
+                    console.log($(".exist"),selected_word)
+                    winnerCase()
+                    decreasingLives()
+                    })
             
     })
    
     
     }
-   
+  
          
        })

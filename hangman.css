@@ -8,7 +8,9 @@
       list-style: none;
   }
   body {
-    /* position: relative; */
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(240, 240, 240);
   }
   .container{
       width: 100%;
@@ -30,6 +32,7 @@
       top: 0;
       right: 0;
       color: #047a9d;
+      font-size: 20px;
     }
     .hangman {
       width: 300px;
@@ -43,7 +46,7 @@
         visibility: visible;
         height: 50px;
         width: 100px;
-        background: #00a8ff;
+        background: #0664f1;
         border-radius: 50px 50px 0 0;
         top: 243px;
         position: absolute;
@@ -52,7 +55,7 @@
         content: " ";
           width: 100px;
           height: 10px;
-          background: #047a9d;
+          background: #073161;
           position: absolute;
           bottom: 0; 
       }
@@ -68,7 +71,7 @@
       .shaft {
         height: 5px;
         width: 250px;
-        background: #00a8ff;
+        background: #047a9d;
         opacity: 0;
         transition: transform .5s ease-in;
       }
@@ -98,7 +101,7 @@
           margin-top: -20px;
         }
         .wrapperMan > div::before,.wrapperMan > div::after{
-            background: #00a8ff;
+            background: #2c2b2c;
               content: "";
               position: absolute;
         }
@@ -107,7 +110,7 @@
             height: 50px;
             border-radius: 25px;
             margin-left: 25px;
-            background:#00a8ff;
+            background: #2c2b2c;
             opacity: 0.2;
             text-align: center;
             /* display: none; */
@@ -150,26 +153,32 @@
               right: 0;
             }
   .startBtn {
-    border: none;
+    border: 4px double;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgb(104, 102, 102);
+    background-color: rgb(80, 79, 79);
     color: #fff;
-    padding: 11px 15px;
+    padding: 15px;
     border-radius: 5px;
-    font-size: 19px;
-  
+    border-radius: 17px;
+    font-size: 27px;
+    font-family: 'Righteous', cursive;
+    transition: all .3s ease-in;  
+  }
+  .startBtn:hover{
+    background-color: rgb(216, 211, 211);
+    color: rgb(104, 102, 102);
   }
   .content_container{
     width: 550px;
     height: 150px;
     margin: 20px auto;
-    border: 1px solid #000;
+    border: 10px double rgb(46, 45, 46);
     padding: 15px;  
-    border-radius: 15px;
-    background-color: rgb(204, 158, 185);
+    border-radius: 10px;
+    background-color: rgb(202, 201, 202);
   }
   .select_content{
       /* width: 360px; */
@@ -177,12 +186,17 @@
       border: 1px solid #000;
       border-radius: 15px;
       margin: 0 auto;
-      padding: 20px;
-      background-color: rgb(178, 216, 108);
+      padding: 10px 20px;
+      background-color: rgb(46, 45, 46);
       text-align: center;
+      color: rgb(230, 221, 221);
   }
-  .h2{
+  .h1{
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .p{
+    /* color: #fff; */
   }
   .ul{
     width: 700px;
@@ -193,7 +207,7 @@
     border: 1px solid #000;
     border-radius: 20px;
     padding: 15px;
-    background-color: rgb(190, 169, 190);
+    background-color: rgb(70, 67, 70);
     box-shadow: 0px 2px 35px -2px rgba(0,0,0,0.75);
 
   }
@@ -204,13 +218,18 @@
       font-size: 20px;
       text-align: center;
       vertical-align: middle;
-      border: 1px solid rgba(127, 241, 241, 0.75);
-      border-radius: 10px;
+      border: 2px solid rgb(250, 252, 252);
+      border-radius: 20px;
       margin-bottom: 10px;
       background-color: #ccc;
       box-shadow: 0px 2px 35px -11px rgba(207, 203, 203, 0.75);
       font-family: 'Righteous', cursive;
       cursor: pointer;
+      transition: all .3s ease-in;
+  }
+  .li:hover{
+    background-color: rgb(70, 67, 70);
+    color: #fff;
   }
   .letters{
     width: 415px;
@@ -247,16 +266,24 @@
     text-align: center;
   }
   .next_btn, .game_over{
-    border: 1px solid #ccc;
-    padding: 10px 20px;
+    border: 4px double;
+    padding: 15px 20px;
     font-size: 18px;
-    border-radius: 12px;
+    border-radius: 28px;
     display: none;
     margin: 0 auto;
+    color: #fff;
+    background-color: rgb(32, 33, 122);
+    font-family: 'Righteous', cursive;
+    transition: all .3s ease-in-out;
+  }
+  .next_btn:hover,.game_over:hover{
+    background-color: rgb(197, 205, 211);
+    color: #000;
   }
   .fas{
     margin-left: 5px;
   }
   .far{
-    font-size: 21px;
+    font-size: 24px;
   }

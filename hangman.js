@@ -60,7 +60,7 @@ $(document).ready(function(){
         $(".pole").css("opacity", 0)
         $(".shaft").css("opacity", 0)
         $(".rope").css("opacity", 0)
-        $(".man").css({"display": "none","top":"50px"})
+        $(".man").css({"display": "none","top":"37px"})
         $(".face").css("opacity", 0)
         $(".hands").css("opacity", 0)
         $(".legs").css("opacity", 0)
@@ -69,12 +69,11 @@ $(document).ready(function(){
     $(".li").click(function(){
        CssStyles()
        $(".score b").text(score)
-        var hangman_img="<div class='hangman_img'></div>"
         var finding_word=`<div class='finding_word'></div>`
         var letters = `<div class='letters'></div>`
         var next_btn=`<div class='next_btn_container'><button class='next_btn'>NEXT WORD<i class="fas fa-arrow-right"></i>  </button></div>`
         var game_over=`<div class='game_over_container'><button class='game_over'>GAME OVER <i class="far fa-sad-tear"></i></button></div>`
-        $(".container").append(hangman_img,finding_word,letters,next_btn,game_over)
+        $(".container").append(finding_word,letters,next_btn,game_over)
         Getletters("A","Z")
         for(i in letter_arr){
             var lowerCaseLetters=letter_arr[i].toLowerCase()
@@ -94,6 +93,7 @@ $(document).ready(function(){
                         else{
                             var words_letters=`<span class='words_letters ${selected_word[i]}'>_</span>`
                             $(".words_letters").eq(selected_word.indexOf(" ")).text("")
+                            $(".words_letters").eq(selected_word.indexOf(" ")).css("background-color","transparent")
                         }
                         $(".finding_word").append(words_letters)
                     }
@@ -123,13 +123,13 @@ $(document).ready(function(){
                     }
                     if(lives == 0){
                         $(".shaft").css({"transform":"rotate(10deg)"})
-                        $(".rope").css({"top":"25px"})
-                        $(".man").css({"top":"75px"})
+                        $(".rope").animate({"top":"25px"},50)
+                        $(".man").animate({"top":"64px"},50)
                         $(".eyes").css("display","inline-block")
                         $(".mouth").css("display","inline")
-                        $(".pole").css({
-                            "height":"252px","top": "-9px"
-                    })
+                        $(".pole").animate({
+                            "height":"212px","top": "-9px"
+                    },50)
                         $(".letters_spans").prop("disabled",true).css("opacity",0.5)
                         $(".game_over").css("display", "block")
                         $(".indicator").css("display", "none")
@@ -168,7 +168,7 @@ $(document).ready(function(){
                 // console.log(generateRandomColor())
                 $(".letters_spans").click(function(){
                     $(this).prop("disabled",true)
-                    $(this).css("opacity",0.5)
+                    $(this).css("opacity",0.3)
                     console.log(selected_word)
                     var current_text=$(this).text().toLowerCase()
                     if(selected_word.includes(current_text)){

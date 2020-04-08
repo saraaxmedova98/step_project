@@ -10,7 +10,22 @@
   body {
     width: 100%;
     height: 100vh;
-    background-color: rgb(240, 240, 240);
+    opacity: 0.5;
+    background-image: url("images/image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    /* z-index: -1000; */
+  }
+  .overflow{
+    width: 850px;
+    height: 559px;
+    margin: 15px auto;
+    background-color: rgb(187, 184, 184, 0.3);
+    position: relative;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: -1;
   }
   .container{
       width: 100%;
@@ -21,9 +36,11 @@
     border: 3px dashed #242525;
     position: relative;
     width: 457px;
-    height: 335px;
+    height: 285px;
     padding: 20px;
-    margin: 20px auto;
+    margin: 0 auto;
+    background-color: rgb(252, 252, 252,0.7);
+    box-shadow: -1px 1px 37px 22px rgba(245, 241, 241, 0.75);
         }
         .indicator {
       z-index: 9;
@@ -48,7 +65,7 @@
         width: 100px;
         background: #4a4a4b;
         border-radius: 50px 50px 0 0;
-        top: 243px;
+        top: 200px;
         position: absolute;
       }
       .base::after{
@@ -60,12 +77,12 @@
           bottom: 0; 
       }
       .pole {
-        height: 245px;
+        height: 195px;
         width: 10px;
         background: #636464;
         margin-left: 45px;
         opacity: 0;
-        transition: height .5s ease-in;
+        transition: all .3s ease-in;
         position: absolute;
       }
       .shaft {
@@ -73,35 +90,34 @@
         width: 250px;
         background: #636464;
         opacity: 0;
-        transition: transform .5s ease-in;
+        transition: all .3s ease-in;
       }
       .rope {
-        height: 50px;
+        height: 41px;
         width: 1px;
         background: #272727;
         left: 240px;
         top: 0;
         position: absolute;
         opacity: 0;
-        transition: top .5s ease-in;
+        transition: all .3s ease-in;
 
       }
       .man {
         height: 200px;
         width: 100px;
         position: absolute;
-        top: 50px;
+        top:37px;
         left: 190px;
         display: none;
-        transition: top .5s ease-in;
-        
+        transition: top .3s ease-in;
       }
           .wrapperMan {
           position: relative;
           margin-top: -20px;
         }
         .wrapperMan > div::before,.wrapperMan > div::after{
-            background: #c1eb0a;
+            background: #3e3f3c;
               content: "";
               position: absolute;
         }
@@ -110,49 +126,78 @@
             height: 50px;
             border-radius: 25px;
             margin-left: 25px;
-            background: #c1eb0a;
+            background: #3e3f3c;
             opacity: 0.2;
             text-align: center;
+            transition: all .3s ease-in;
             /* display: none; */
           }
           .face::after{
-            height: 100px;
-              width: 2px;
-              top: 50px;
-              left: 50px; 
+            height: 79px;
+            width: 29px;
+            top: 50px;
+            left: 35px;
+            border-radius: 20px;
+            /* display: none; */
           }
           .eyes{
             font-size: 20px;
-            color: #5c5e5e;
+            color: #fff;
             display: none;
           }
           .mouth{
             font-size: 20px;
-            color: #5c5e5e;
+            color: #fff;
             display: none;
           }
           .hands {
-            height: 99px;
+            height: 89px;
           }
           .hands,
           .legs {
             transition:transform 0.2s linear;
             opacity: 0.2;
             }
-            .hands::after, .legs::after{
-              height: 2px;
-              width: 50px;
+            .hands::after{
+              height: 5px;
+              width: 37px;
               transform: rotate(-45deg);
               transform-origin: 100% 0%;  
+              left: 10px;
+              border-radius: 5px;
+              transition: all .5s ease-in;
             }
-            .hands::before, .legs::before{
-                height: 2px;
-              width: 50px;
+            .hands::before{
+              height: 5px;
+              width: 37px;
               transform: rotate(45deg);
               transform-origin: 0% 100%;
-              right: 0;
+              right: 15px; 
+              border-radius: 5px;
+              top: 48px;
+              transition: all .5s ease-in;
             }
-  .startBtn {
+            .legs::after{
+               height: 5px;
+              width: 47px;
+              transform: rotate(-60deg);
+              transform-origin: 100% 0%;
+              left: -5px;
+              border-radius: 5px;
+              bottom: 8px;
+              transition: all .5s ease-in;
+            }
+            .legs::before{
+              height: 5px;
+              width: 47px;
+              transform: rotate(59deg);
+              transform-origin: 0% 100%;
+              right: 1px; 
+              border-radius: 5px;
+              bottom: 11px;
+              transition: all .5s ease-in;
+            }
+             .startBtn {
     border: 4px double;
     position: absolute;
     left: 50%;
@@ -166,6 +211,7 @@
     font-size: 27px;
     font-family: 'Righteous', cursive;
     transition: all .3s ease-in;  
+    z-index: 1000;
   }
   .startBtn:hover{
     background-color: rgb(216, 211, 211);
@@ -174,7 +220,7 @@
   .content_container{
     width: 550px;
     height: 155px;
-    margin: 20px auto;
+    margin: 0px auto 20px auto;
     border: 10px double rgb(46, 45, 46);
     padding: 15px;  
     border-radius: 10px;
@@ -203,9 +249,9 @@
     justify-content: space-between;
     border: 1px solid #000;
     border-radius: 20px;
-    padding: 15px;
+    padding: 8px 15px 0px 15px;
     background-color: rgb(70, 67, 70);
-    box-shadow: 0px 2px 35px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 29px 11px rgba(240, 231, 231, 0.75);
 
   }
   .li{
@@ -218,7 +264,7 @@
       border: 2px solid rgb(250, 252, 252);
       border-radius: 20px;
       margin-bottom: 10px;
-      background-color: #ccc;
+      background-color: rgb(204, 204, 204,0.5);
       box-shadow: 0px 2px 35px -11px rgba(207, 203, 203, 0.75);
       font-family: 'Righteous', cursive;
       cursor: pointer;
@@ -239,9 +285,10 @@
     border-radius: 5px;
     width: 40px;
     height: 40px;
+    cursor: pointer;
     border: 1px solid #fff;
-    box-shadow: -3px 2px 75px -6px rgba(0,0,0,0.75);
-    background-color: #242525;
+    box-shadow: -3px 2px 75px 0px rgba(94, 93, 93, 0.75);
+    background-color: #171818;
     color: #fff;
     text-align: center;
     padding-top: 3px;
@@ -252,16 +299,20 @@
   }
   .letters_spans:hover{
     opacity: .7;
+    background-color: #858686;
   }
   .finding_word{
-    width: 490px;
-    margin: 35px auto;
+    width: 100%;
+    margin: 32px auto;
     text-align: center;
   }
   .words_letters{
-    padding: 8px;
     font-size: 30px;
     margin: 0 3px;
+    background-color: #fff;
+    width: 33px;
+    height: 40px;
+    display: inline-block;
   }
   .next_btn_container, .game_over_container{
     text-align: center;

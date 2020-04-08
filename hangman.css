@@ -18,7 +18,7 @@
   }
   #hangMan {
     display: none;
-    border: 3px dashed #047a9d;
+    border: 3px dashed #242525;
     position: relative;
     width: 457px;
     height: 335px;
@@ -31,7 +31,7 @@
       padding: 10px;
       top: 0;
       right: 0;
-      color: #047a9d;
+      color: #242525;
       font-size: 20px;
     }
     .hangman {
@@ -46,7 +46,7 @@
         visibility: visible;
         height: 50px;
         width: 100px;
-        background: #0664f1;
+        background: #4a4a4b;
         border-radius: 50px 50px 0 0;
         top: 243px;
         position: absolute;
@@ -55,14 +55,14 @@
         content: " ";
           width: 100px;
           height: 10px;
-          background: #073161;
+          background: #242525;
           position: absolute;
           bottom: 0; 
       }
       .pole {
         height: 245px;
         width: 10px;
-        background: #047a9d;
+        background: #636464;
         margin-left: 45px;
         opacity: 0;
         transition: height .5s ease-in;
@@ -71,14 +71,14 @@
       .shaft {
         height: 5px;
         width: 250px;
-        background: #047a9d;
+        background: #636464;
         opacity: 0;
         transition: transform .5s ease-in;
       }
       .rope {
         height: 50px;
         width: 1px;
-        background: #047a9d;
+        background: #272727;
         left: 240px;
         top: 0;
         position: absolute;
@@ -101,7 +101,7 @@
           margin-top: -20px;
         }
         .wrapperMan > div::before,.wrapperMan > div::after{
-            background: #2c2b2c;
+            background: #c1eb0a;
               content: "";
               position: absolute;
         }
@@ -110,7 +110,7 @@
             height: 50px;
             border-radius: 25px;
             margin-left: 25px;
-            background: #2c2b2c;
+            background: #c1eb0a;
             opacity: 0.2;
             text-align: center;
             /* display: none; */
@@ -123,12 +123,12 @@
           }
           .eyes{
             font-size: 20px;
-            color: #fff;
+            color: #5c5e5e;
             display: none;
           }
           .mouth{
             font-size: 20px;
-            color: #fff;
+            color: #5c5e5e;
             display: none;
           }
           .hands {
@@ -173,7 +173,7 @@
   }
   .content_container{
     width: 550px;
-    height: 150px;
+    height: 155px;
     margin: 20px auto;
     border: 10px double rgb(46, 45, 46);
     padding: 15px;  
@@ -194,9 +194,6 @@
   .h1{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-  }
-  .p{
-    /* color: #fff; */
   }
   .ul{
     width: 700px;
@@ -244,16 +241,20 @@
     height: 40px;
     border: 1px solid #fff;
     box-shadow: -3px 2px 75px -6px rgba(0,0,0,0.75);
-    background-color: rgb(50, 50, 146);
+    background-color: #242525;
     color: #fff;
     text-align: center;
     padding-top: 3px;
     font-size: 24px;
     vertical-align: middle;
     margin: 2px 3px;
+    transition: all .3s ease-in;
+  }
+  .letters_spans:hover{
+    opacity: .7;
   }
   .finding_word{
-    width: 410px;
+    width: 490px;
     margin: 35px auto;
     text-align: center;
   }
@@ -273,13 +274,13 @@
     display: none;
     margin: 0 auto;
     color: #fff;
-    background-color: rgb(32, 33, 122);
+    background-color: rgb(80, 79, 79);
     font-family: 'Righteous', cursive;
     transition: all .3s ease-in-out;
   }
   .next_btn:hover,.game_over:hover{
-    background-color: rgb(197, 205, 211);
-    color: #000;
+    background-color: rgb(216, 211, 211);
+    color: rgb(104, 102, 102);
   }
   .fas{
     margin-left: 5px;

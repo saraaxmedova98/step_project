@@ -3,7 +3,7 @@ $(document).ready(function(){
         "Animals": ["turtle" , "dragon","sheep","snake","monkey","penguin","giraffe","butterfly","peacock butterfly","eagle","goat","dolphin","hippo","lizard","kangaroo","beetle","camel","cow"],
         "Buildings": ["villa","garage","zoo","house","park","factory","stadium","church","castle","tunnel","movie theater","airport","hospital","apartment","pet store","florist"],
         "Places": ["bedroom","bathroom","restaurant","shopping","monuments","kitchen","store","book shop","caridor","classroom","library","playgrond","supermarket","cafe",'service station',"church"],
-        "Kitchen": ["123","22"],
+        "Kitchen": ["spoon","bowl","toaster","mixer","glass","jug","microwave","saucepan","teapot","frying pan","plate","bottle","cleaver","kettle","peeler","tray","bowl","spoon","knife","spatula"],
         "Personal": ["phone","headphones","suitcase","watch","money","purse","wallet","newspaper","id card","flaslight","book","laptop","mug","key",'brush',"bed","credit card"],
         "Sports": ["cycling","wrestling","swimming","badminton","skiing","running","golf","figure skating","skateboarding","boxing","volleyball","tennis","bowling","cricket"],
         "Nature": ["tornado","lake","island","snow","flower","the moon","volcano","planet","rainbow","the sun","clouds","desert","mountain","stars","wind"],
@@ -44,7 +44,7 @@ $(document).ready(function(){
         var letter_arr=[]
         function Getletters(first,second){
             var i=first.charCodeAt(0),j=second.charCodeAt(0)
-            for(;i<j;++i){
+            for(;i<=j;++i){
                 letter_arr.push(String.fromCharCode(i))
             }
             return letter_arr;
@@ -78,7 +78,6 @@ $(document).ready(function(){
         Getletters("A","Z")
         for(i in letter_arr){
             var lowerCaseLetters=letter_arr[i].toLowerCase()
-            // console.log(lowerCaseLetters)
             var letters_spans=`<button class='letters_spans ${letter_arr[i]}'>${letter_arr[i]}</button>`
             $(".letters").append(letters_spans)
         }
@@ -96,16 +95,10 @@ $(document).ready(function(){
                             var words_letters=`<span class='words_letters ${selected_word[i]}'>_</span>`
                             $(".words_letters").eq(selected_word.indexOf(" ")).text("")
                         }
-                        // if(selected_word.indexOf(" ") != -1){
-                        //     $(".words_letters").eq(selected_word.indexOf(" ")).removeClass("words_letters")
-                        //    console.log( $(".words_letters").eq(selected_word.indexOf(" ")),selected_word.indexOf(" "))
-                        // }
                         $(".finding_word").append(words_letters)
-                        // return words_letters;
                     }
                    }
                 wordsLetters()
-                console.log(word, questions_arr[word])
                 function decreasingLives(){
                     if(lives==9){
                         $(".pole").css("opacity", 1)
@@ -140,7 +133,6 @@ $(document).ready(function(){
                         $(".letters_spans").prop("disabled",true).css("opacity",0.5)
                         $(".game_over").css("display", "block")
                         $(".indicator").css("display", "none")
-                        // break;
                     }
                 }
                 function winnerCase(){
@@ -148,7 +140,6 @@ $(document).ready(function(){
                     if(selected_word.indexOf(" ") == -1){
                     if($(".exist").length == selected_word.length && lives > 0){
                         score +=1
-                       console.log("yoy win")
                        $(".letters_spans").prop("disabled",true).css("opacity",0.5)
                        $(".next_btn").css("display", "block")
                        $(`.words_letters`).removeClass(`exist`)
@@ -167,35 +158,41 @@ $(document).ready(function(){
                     }
                 }
                 }
+                function generateRandomColor(){
+                    var r=Math.floor(Math.random()*256);
+                    var g=Math.floor(Math.random()*256);
+                    var b=Math.floor(Math.random()*256)
+
+                    return `rgb(${r},${g},${b})`
+                }
+                // console.log(generateRandomColor())
                 $(".letters_spans").click(function(){
                     $(this).prop("disabled",true)
                     $(this).css("opacity",0.5)
+                    console.log(selected_word)
                     var current_text=$(this).text().toLowerCase()
                     if(selected_word.includes(current_text)){
                         $(`.${current_text}`).text(current_text)
                         $(`.${current_text}`).addClass(`exist`)
+                        $(`.${current_text}`).css("color",`${generateRandomColor()}`)
                         $(`.words_letters`).removeClass(`${current_text}`)
                     }
                     else{
                         lives -=1
                     }
                     decreasingLives()
-                    winnerCase()
-                    console.log(lives)
-                   
+                    winnerCase()                   
                 })
                 $(".next_btn").click(function(){
-                    // generateQuestions()
                     $(".words_letters").remove()
                     $(".pole").css("opacity", 0)
                     $(".shaft").css("opacity", 0)
                     $(".rope").css("opacity", 0)
                     $(".man").css("display", "none")
-                    // $("#hangMan").css("display","none")
                     lives=11
                     $(".remaining").text(lives)
                     $(".letters_spans").prop("disabled",false).css("opacity",1)
-                    console.log(word,selected_word,score)
+                    // console.log(word,selected_word,score)
                     wordsLetters()
                     $(this).css("display", "none")
                 })
@@ -215,23 +212,20 @@ $(document).ready(function(){
                     generateQuestions()
                 })
 
-                $(document).keypress(function(e){
-                    console.log(e.key,selected_word)
-                    
-                    var lovercase=e.key.toUpperCase()
-                    $(`.${lovercase}`).prop("disabled",true)
-                     $(`.${lovercase}`).css("opacity",0.5) 
+                $(document).keypress(function(e){       
+                    var lowercase=e.key.toUpperCase()
+                    $(`.${lowercase}`).prop("disabled",true)
+                     $(`.${lowercase}`).css("opacity",0.5) 
                     if(selected_word.includes(e.key)){
                         $(`.${e.key}`).text(e.key)
+                        $(`.${e.key}`).css("color",`${generateRandomColor()}`)
                         $(`.${e.key}`).addClass(`exist`)
                         $(`.words_letters`).removeClass(`${e.key}`)
                     }
                     else{
                         lives -=1   
                     }
-                    console.log(lives)
                     $(".remaining").text(lives)
-                    console.log($(".exist"),selected_word)
                     winnerCase()
                     decreasingLives()
                     })

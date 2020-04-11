@@ -8,6 +8,9 @@ ul,
 li {
   list-style: none;
 }
+html{
+  overflow: auto;
+}
 body {
   width: 100%;
   height: 100%;
@@ -15,12 +18,11 @@ body {
   background-image: url("images/image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  /* overflow: hidden; */
 }
 .overflow {
   width: 850px;
   height: 640px;
-  margin: 15px auto;
+  margin: 10px auto 0 auto;
   background-color: rgb(187, 184, 184, 0.3);
   position: relative;
   border-radius: 10px;
@@ -45,6 +47,7 @@ body {
   font-family: "Righteous", cursive;
   transition: all 0.4s ease-in;
   z-index: 1000;
+  cursor: pointer;
 }
 .startBtn:hover {
   background-color: rgb(216, 211, 211);
@@ -339,6 +342,7 @@ body {
   background-color: rgb(80, 79, 79);
   font-family: "Righteous", cursive;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 .next_btn:hover,
 #gameOver:hover {

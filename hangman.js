@@ -50,7 +50,7 @@ $(document).ready(function () {
       "caridor",
       "classroom",
       "library",
-      "playgrond",
+      "playground",
       "supermarket",
       "cafe",
       "service station",
@@ -129,6 +129,10 @@ $(document).ready(function () {
       "mountain",
       "stars",
       "wind",
+      "sea",
+      "ocean",
+      "sun",
+      "water vapor"
     ],
     Music: [
       "accordion",
@@ -212,14 +216,23 @@ $(document).ready(function () {
       "mouth",
       "forehead",
       "neck",
-      "ear",
       "head",
       "chin",
       "face",
       "forearm",
       "knee",
       "foot",
+      "finger nail",
       "thumb",
+      "stomach",
+      "chest",
+      "arm",
+      "finger",
+      "elbow",
+      "toe",
+      "heel",
+      "calf",
+      "ear"
     ],
     Food: [
       "chicken",
@@ -246,7 +259,6 @@ $(document).ready(function () {
     ],
     Fruits: [
       "banana",
-      "apple",
       "cherry",
       "blueberry",
       "blackberry",
@@ -258,6 +270,7 @@ $(document).ready(function () {
       "strawberry",
       "quince",
       "pineapple",
+      "apple",
     ],
     Vegetables: [
       "carrots",
@@ -300,7 +313,7 @@ $(document).ready(function () {
       "math",
       "chemistry",
       "music",
-      "information technology",
+      "computer science",
       "geography",
       "art",
       "literacy",
@@ -325,181 +338,198 @@ $(document).ready(function () {
       "hard drive",
     ],
   };
-  $(".startBtn").click(function () {
-    $(this).css("display", "none");
-    generateQuestions();
-  });
-
-  function generateQuestions() {
+  
+  var word; 
+  var lives;
+  var score=0;
+  var questions_arr;
+  var selected_word;
+  function generateQuestions(){
     var select_content =
-      "<div class='content_container'><div class='select_content' ><h1 class='h2'>Select Content</h1><div class='p'></div></div></div>";
-    var ul = "<ul class='ul'></ul>";
-    $(".container").append(select_content);
-    $(".container").append(ul);
-    for (i in questions) {
-      var q = `<li class='li ${i}'>${i}</li>`;
-      $(".ul").append(`${q}`);
-      $(".li").hover(
-        function () {
-          var li_text = $(this).text();
-          $(".h2").text(li_text);
-          $(".p").text(questions[li_text]);
-        },
-        function () {
-          $(".h2").text("Select Content");
-          $(".p").text("");
-        }
-      );
-    }
-    var letter_arr = [];
-    function Getletters(first, second) {
-      var i = first.charCodeAt(0),
-        j = second.charCodeAt(0);
-      for (; i <= j; ++i) {
-        letter_arr.push(String.fromCharCode(i));
+    "<div class='content_container'><div class='select_content' ><h1 class='select_content_h1'>Select Content</h1><div class='select_content_p'></div></div></div>";
+  var ul = "<ul class='words_container'></ul>";
+  $(".container").append(select_content);
+  $(".container").append(ul);
+  for (i in questions) {
+    var words_lists = `<li class='words_lists ${i}'>${i}</li>`;
+    $(".words_container").append(`${words_lists}`);
+    $(".words_lists").hover(
+      function () {
+        var li_text = $(this).text();
+        $(".select_content_h1").text(li_text);
+        $(".select_content_p").text(questions[li_text]);
+      },
+      function () {
+        $(".select_content_h1").text("Select Content");
+        $(".select_content_p").text("");
       }
-      return letter_arr;
+    );
+  }
+   }
+   function randomWordContainer(){
+    var finding_word = `<div class='finding_word'></div>`;
+    var letters = `<div class='letters'></div>`;
+    var next_btn = `<div class='next_btn_container'><button class='next_btn'>NEXT WORD<i class="fas fa-arrow-right"></i>  </button></div>`;
+    $(".container").append(finding_word, letters, next_btn);
+  }
+  function wordsLetters() {
+    word = Math.floor(Math.random() * questions_arr.length);
+    selected_word = questions_arr[word];
+    console.log(selected_word);
+    for (var i = 0; i < selected_word.length; i++) {
+      if (selected_word.indexOf(" ") == -1) {
+        var words_letters = `<span class='words_letters ${selected_word[i]}'>_</span>`;
+      } else {
+        var words_letters = `<span class='words_letters ${selected_word[i]}'>_</span>`;
+        $(".words_letters").eq(selected_word.indexOf(" ")).text("");
+        $(".words_letters")
+          .eq(selected_word.indexOf(" "))
+          .css("background-color", "transparent");
+      }
+      $(".finding_word").append(words_letters);
     }
-    var score = 0;
-    var lives = 11;
-    var questions_arr;
-    var selected_word;
-    $(".remaining").text(lives);
-    $(".maxTry").text(lives);
-    function CssStyles() {
-      $("#hangMan").css("display", "block");
-      $(".pole").css("opacity", 0);
-      $(".shaft").css("opacity", 0);
-      $(".rope").css("opacity", 0);
-      $(".man").css({ display: "none", top: "37px" });
-      $(".face").css("opacity", 0);
-      $(".hands").css("opacity", 0);
-      $(".legs").css("opacity", 0);
-      $(".container").empty();
+  }
+  function letterButtons(){
+    var letter_arr=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  
+    for (i in letter_arr) {
+      var letters_spans = `<button class='alphabet_btns ${letter_arr[i]}'>${letter_arr[i]}</button>`;
+      $(".letters").append(letters_spans);
     }
-    $(".li").click(function () {
+  }
+  function choosedRandomWord(randomWord){
+    if (selected_word.includes(randomWord)) {
+      $(`.${randomWord}`).text(randomWord);
+      $(`.${randomWord}`).addClass(`exist`);
+      $(`.${randomWord}`).css("color", `${generateRandomColor()}`);
+      $(`.words_letters`).removeClass(`${randomWord}`);
+    } else {
+      lives -= 1;
+      $(".remaining").text(lives);
+      
+    }
+  }
+   function CssStyles() {
+    lives = 11 
+    $("#hangMan").css("display", "block");  
+    $(".remaining").text(lives)
+    $(".indicator").css("display", "block");
+    $(".shaft").css({ transform: "rotate(0deg)" });
+    $(".pole").css({"opacity": 0,"height":"195px","top":"5px"});
+    $(".shaft").css("opacity", 0);
+    $(".rope").css({"opacity": 0,top:0});
+    $(".man").css({ display: "none", top: "37px" });
+    $(".face").css("opacity", 0);
+    $(".hands").css("opacity", 0);
+    $(".legs").css("opacity", 0);
+    $(".container").empty();
+  }
+  var letter_arr = [];
+  function Getletters(first, second) {
+    var i = first.charCodeAt(0),
+      j = second.charCodeAt(0);
+    for (; i <= j; ++i) {
+      letter_arr.push(String.fromCharCode(i));
+    }
+    return letter_arr;
+  }
+  function winnerCase() {
+    if (selected_word.indexOf(" ") == -1) {
+      if ($(".exist").length == selected_word.length && lives > 0) {
+        score += 1;
+        $(".alphabet_btns").prop("disabled", true).css("opacity", 0.5);
+        $(".next_btn").css("display", "block");
+        $(`.words_letters`).removeClass(`exist`);
+        $(".score b").text(score);
+      }
+    } else {
+      if ($(".exist").length == selected_word.length - 1 && lives > 0) {
+        score += 1;
+        $(".alphabet_btns").prop("disabled", true).css("opacity", 0.5);
+        $(".next_btn").css("display", "block");
+        $(`.words_letters`).removeClass(`exist`);
+        $(".score b").text(score);
+      }
+    }
+  }
+  function decreasingLives() {
+    if (lives == 9) {
+      $(".pole").css("opacity", 1);
+    }
+    if (lives == 7) {
+      $(".shaft").css("opacity", 1);
+    }
+    if (lives == 6) {
+      $(".rope").css("opacity", 1);
+    }
+    if (lives == 4) {
+      $(".man").css("display", "block");
+    }
+    if (lives == 3) {
+      $(".face").css("opacity", 1);
+    }
+    if (lives == 2) {
+      $(".hands").css("opacity", 1);
+    }
+    if (lives == 1) {
+      $(".legs").css("opacity", 1);
+    }
+    if (lives == 0) {
+      const sound = new Audio(`audio/lose.wav`);
+      sound.play();
+      $(".shaft").css({ transform: "rotate(10deg)" });
+      $(".rope").animate({ top: "25px" }, 50);
+      $(".man").animate({ top: "64px" }, 50);
+      $(".eyes").css("display", "inline-block");
+      $(".mouth").css("display", "inline");
+      $(".pole").animate(
+        {
+          height: "212px",
+          top: "-9px",
+        },
+        50
+      );
+      $(".alphabet_btns").prop("disabled", true).css("opacity", 0.5);
+      // $(".game_over").css("display", "block");
+      $("#gameOver").css("display", "block");
+      $(".indicator").css("display", "none");
+    }
+    if(lives <= 0){
+      for (var i = 0; i < selected_word.length; i++) {
+        $(".words_letters").eq(i).text(selected_word[i]);
+        $(".words_letters").css("color", "#ff0000");
+      }
+    }
+  }
+  function generateRandomColor() {
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+
+    return `rgb(${r},${g},${b})`;
+  }
+   function startAgain(){
+    $(".words_lists").click(function () {
+      lives = 11;
+      $(".maxTry").text(lives);
       CssStyles();
       $(".score b").text(score);
-      var finding_word = `<div class='finding_word'></div>`;
-      var letters = `<div class='letters'></div>`;
-      var next_btn = `<div class='next_btn_container'><button class='next_btn'>NEXT WORD<i class="fas fa-arrow-right"></i>  </button></div>`;
-      var game_over = `<div class='game_over_container'><button class='game_over'>GAME OVER <i class="far fa-sad-tear"></i></button></div>`;
-      $(".container").append(finding_word, letters, next_btn, game_over);
-      Getletters("A", "Z");
-      for (i in letter_arr) {
-        var lowerCaseLetters = letter_arr[i].toLowerCase();
-        var letters_spans = `<button class='letters_spans ${letter_arr[i]}'>${letter_arr[i]}</button>`;
-        $(".letters").append(letters_spans);
-      }
+      randomWordContainer()
+      // Getletters("A", "Z");
+      letterButtons()
       questions_arr = questions[$(this).text()];
-      var word;
-      function wordsLetters() {
-        word = Math.floor(Math.random() * questions_arr.length);
-        selected_word = questions_arr[word];
-        console.log(selected_word);
-        for (var i = 0; i < selected_word.length; i++) {
-          if (selected_word.indexOf(" ") == -1) {
-            var words_letters = `<span class='words_letters ${selected_word[i]}'>_</span>`;
-          } else {
-            var words_letters = `<span class='words_letters ${selected_word[i]}'>_</span>`;
-            $(".words_letters").eq(selected_word.indexOf(" ")).text("");
-            $(".words_letters")
-              .eq(selected_word.indexOf(" "))
-              .css("background-color", "transparent");
-          }
-          $(".finding_word").append(words_letters);
-        }
-      }
       wordsLetters();
-      function decreasingLives() {
-        if (lives == 9) {
-          $(".pole").css("opacity", 1);
-        }
-        if (lives == 7) {
-          $(".shaft").css("opacity", 1);
-        }
-        if (lives == 6) {
-          $(".rope").css("opacity", 1);
-        }
-        if (lives == 4) {
-          $(".man").css("display", "block");
-        }
-        if (lives == 3) {
-          $(".face").css("opacity", 1);
-        }
-        if (lives == 2) {
-          $(".hands").css("opacity", 1);
-        }
-        if (lives == 1) {
-          $(".legs").css("opacity", 1);
-        }
-        if (lives == 0) {
-          $(".shaft").css({ transform: "rotate(10deg)" });
-          $(".rope").animate({ top: "25px" }, 50);
-          $(".man").animate({ top: "64px" }, 50);
-          $(".eyes").css("display", "inline-block");
-          $(".mouth").css("display", "inline");
-          $(".pole").animate(
-            {
-              height: "212px",
-              top: "-9px",
-            },
-            50
-          );
-          $(".letters_spans").prop("disabled", true).css("opacity", 0.5);
-          $(".game_over").css("display", "block");
-          $(".indicator").css("display", "none");
-          for (var i = 0; i < selected_word.length; i++) {
-            $(".words_letters").eq(i).text(selected_word[i]);
-            $(".words_letters").css("color", "#ff0000");
-          }
-        }
-      }
-      function winnerCase() {
-        $(".remaining").text(lives);
-        if (selected_word.indexOf(" ") == -1) {
-          if ($(".exist").length == selected_word.length && lives > 0) {
-            score += 1;
-            $(".letters_spans").prop("disabled", true).css("opacity", 0.5);
-            $(".next_btn").css("display", "block");
-            $(`.words_letters`).removeClass(`exist`);
-            $(".score b").text(score);
-          }
-        } else {
-          if ($(".exist").length == selected_word.length - 1 && lives > 0) {
-            score += 1;
-            console.log("yoy win");
-            $(".letters_spans").prop("disabled", true).css("opacity", 0.5);
-            $(".next_btn").css("display", "block");
-            $(`.words_letters`).removeClass(`exist`);
-            $(".score b").text(score);
-          }
-        }
-      }
-      function generateRandomColor() {
-        var r = Math.floor(Math.random() * 256);
-        var g = Math.floor(Math.random() * 256);
-        var b = Math.floor(Math.random() * 256);
-
-        return `rgb(${r},${g},${b})`;
-      }
-      $(".letters_spans").click(function () {
+      $(".alphabet_btns").click(function () {
         $(this).prop("disabled", true);
-        $(this).css("opacity", 0.3);
+        $(this).css("opacity", 0.2);
         console.log(selected_word);
         var current_text = $(this).text().toLowerCase();
-        if (selected_word.includes(current_text)) {
-          $(`.${current_text}`).text(current_text);
-          $(`.${current_text}`).addClass(`exist`);
-          $(`.${current_text}`).css("color", `${generateRandomColor()}`);
-          $(`.words_letters`).removeClass(`${current_text}`);
-        } else {
-          lives -= 1;
-        }
-        decreasingLives();
+        choosedRandomWord(current_text)
         winnerCase();
+        decreasingLives();
       });
       $(".next_btn").click(function () {
+        $(this).css("display", "none");
         $(".words_letters").remove();
         $(".pole").css("opacity", 0);
         $(".shaft").css("opacity", 0);
@@ -507,43 +537,35 @@ $(document).ready(function () {
         $(".man").css("display", "none");
         lives = 11;
         $(".remaining").text(lives);
-        $(".letters_spans").prop("disabled", false).css("opacity", 1);
-        wordsLetters();
-        $(this).css("display", "none");
+        $(".alphabet_btns").prop("disabled", false).css("opacity", 1);
+        wordsLetters();      
       });
-      $(".game_over").click(function () {
-        $(this).css("display", "none");
-        $(".shaft").css({ transform: "rotate(0deg)" });
-        $(".rope").css({ top: "0px" });
-        $(".man").css({ top: "0px" });
-        $(".eyes").css("display", "none");
-        $(".mouth").css("display", "none");
-        $(".pole").css({
-          height: "245px",
-          top: "0px",
-        });
-        $("#hangMan").css("display", "none");
-        $(".container").empty();
-        $(".indicator").css("display", "block");
-        generateQuestions();
-      });
-
-      $(document).keypress(function (e) {
-        var lowercase = e.key.toUpperCase();
-        $(`.${lowercase}`).prop("disabled", true);
-        $(`.${lowercase}`).css("opacity", 0.5);
-        if (selected_word.includes(e.key)) {
-          $(`.${e.key}`).text(e.key);
-          $(`.${e.key}`).css("color", `${generateRandomColor()}`);
-          $(`.${e.key}`).addClass(`exist`);
-          $(`.words_letters`).removeClass(`${e.key}`);
-        } else {
-          lives -= 1;
-        }
-        $(".remaining").text(lives);
-        winnerCase();
-        decreasingLives();
-      });
+     
     });
-  }
+   }
+   $(document).keypress(function (e) {
+    var lowercase = e.key.toUpperCase();
+    $(`.${lowercase}`).prop("disabled", true);
+    $(`.${lowercase}`).css("opacity", 0.2);
+    // console.log(e.key)
+    choosedRandomWord(e.key)
+    winnerCase();
+    decreasingLives();
+  });
+  $(".startBtn").click(function () {
+    $(this).css("display", "none");
+   generateQuestions()
+  startAgain()
+  });
+  $("#gameOver").click(function(){
+    score=0
+    $(this).css("display", "none");
+    $("#hangMan").css("display", "none");
+    // $(".container").empty();
+    $(".container").html("")
+    generateQuestions()
+    startAgain()
+    // location.reload()
+
+  })
 });

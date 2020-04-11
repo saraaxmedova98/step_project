@@ -132,7 +132,7 @@ $(document).ready(function () {
       "sea",
       "ocean",
       "sun",
-      "water vapor"
+      "water vapor",
     ],
     Music: [
       "accordion",
@@ -232,7 +232,7 @@ $(document).ready(function () {
       "toe",
       "heel",
       "calf",
-      "ear"
+      "ear",
     ],
     Food: [
       "chicken",
@@ -338,35 +338,35 @@ $(document).ready(function () {
       "hard drive",
     ],
   };
-  
-  var word; 
+
+  var word;
   var lives;
-  var score=0;
+  var score = 0;
   var questions_arr;
   var selected_word;
-  function generateQuestions(){
+  function generateQuestions() {
     var select_content =
-    "<div class='content_container'><div class='select_content' ><h1 class='select_content_h1'>Select Content</h1><div class='select_content_p'></div></div></div>";
-  var ul = "<ul class='words_container'></ul>";
-  $(".container").append(select_content);
-  $(".container").append(ul);
-  for (i in questions) {
-    var words_lists = `<li class='words_lists ${i}'>${i}</li>`;
-    $(".words_container").append(`${words_lists}`);
-    $(".words_lists").hover(
-      function () {
-        var li_text = $(this).text();
-        $(".select_content_h1").text(li_text);
-        $(".select_content_p").text(questions[li_text]);
-      },
-      function () {
-        $(".select_content_h1").text("Select Content");
-        $(".select_content_p").text("");
-      }
-    );
+      "<div class='content_container'><div class='select_content' ><h1 class='select_content_h1'>Select Content</h1><div class='select_content_p'></div></div></div>";
+    var ul = "<ul class='words_container'></ul>";
+    $(".container").append(select_content);
+    $(".container").append(ul);
+    for (i in questions) {
+      var words_lists = `<li class='words_lists ${i}'>${i}</li>`;
+      $(".words_container").append(`${words_lists}`);
+      $(".words_lists").hover(
+        function () {
+          var li_text = $(this).text();
+          $(".select_content_h1").text(li_text);
+          $(".select_content_p").text(questions[li_text]);
+        },
+        function () {
+          $(".select_content_h1").text("Select Content");
+          $(".select_content_p").text("");
+        }
+      );
+    }
   }
-   }
-   function randomWordContainer(){
+  function randomWordContainer() {
     var finding_word = `<div class='finding_word'></div>`;
     var letters = `<div class='letters'></div>`;
     var next_btn = `<div class='next_btn_container'><button class='next_btn'>NEXT WORD<i class="fas fa-arrow-right"></i>  </button></div>`;
@@ -389,15 +389,42 @@ $(document).ready(function () {
       $(".finding_word").append(words_letters);
     }
   }
-  function letterButtons(){
-    var letter_arr=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-  
+  function letterButtons() {
+    var letter_arr = [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+    ];
+
     for (i in letter_arr) {
       var letters_spans = `<button class='alphabet_btns ${letter_arr[i]}'>${letter_arr[i]}</button>`;
       $(".letters").append(letters_spans);
     }
   }
-  function choosedRandomWord(randomWord){
+  function choosedRandomWord(randomWord) {
     if (selected_word.includes(randomWord)) {
       $(`.${randomWord}`).text(randomWord);
       $(`.${randomWord}`).addClass(`exist`);
@@ -406,18 +433,17 @@ $(document).ready(function () {
     } else {
       lives -= 1;
       $(".remaining").text(lives);
-      
     }
   }
-   function CssStyles() {
-    lives = 11 
-    $("#hangMan").css("display", "block");  
-    $(".remaining").text(lives)
+  function CssStyles() {
+    lives = 11;
+    $("#hangMan").css("display", "block");
+    $(".remaining").text(lives);
     $(".indicator").css("display", "block");
     $(".shaft").css({ transform: "rotate(0deg)" });
-    $(".pole").css({"opacity": 0,"height":"195px","top":"5px"});
+    $(".pole").css({ opacity: 0, height: "195px", top: "5px" });
     $(".shaft").css("opacity", 0);
-    $(".rope").css({"opacity": 0,top:0});
+    $(".rope").css({ opacity: 0, top: 0 });
     $(".man").css({ display: "none", top: "37px" });
     $(".face").css("opacity", 0);
     $(".hands").css("opacity", 0);
@@ -494,7 +520,7 @@ $(document).ready(function () {
       $("#gameOver").css("display", "block");
       $(".indicator").css("display", "none");
     }
-    if(lives <= 0){
+    if (lives <= 0) {
       for (var i = 0; i < selected_word.length; i++) {
         $(".words_letters").eq(i).text(selected_word[i]);
         $(".words_letters").css("color", "#ff0000");
@@ -508,15 +534,15 @@ $(document).ready(function () {
 
     return `rgb(${r},${g},${b})`;
   }
-   function startAgain(){
+  function startAgain() {
     $(".words_lists").click(function () {
       lives = 11;
       $(".maxTry").text(lives);
       CssStyles();
       $(".score b").text(score);
-      randomWordContainer()
+      randomWordContainer();
       // Getletters("A", "Z");
-      letterButtons()
+      letterButtons();
       questions_arr = questions[$(this).text()];
       wordsLetters();
       $(".alphabet_btns").click(function () {
@@ -524,7 +550,7 @@ $(document).ready(function () {
         $(this).css("opacity", 0.2);
         console.log(selected_word);
         var current_text = $(this).text().toLowerCase();
-        choosedRandomWord(current_text)
+        choosedRandomWord(current_text);
         winnerCase();
         decreasingLives();
       });
@@ -538,34 +564,31 @@ $(document).ready(function () {
         lives = 11;
         $(".remaining").text(lives);
         $(".alphabet_btns").prop("disabled", false).css("opacity", 1);
-        wordsLetters();      
+        wordsLetters();
       });
-     
     });
-   }
-   $(document).keypress(function (e) {
+  }
+  $(document).keypress(function (e) {
     var lowercase = e.key.toUpperCase();
     $(`.${lowercase}`).prop("disabled", true);
     $(`.${lowercase}`).css("opacity", 0.2);
     // console.log(e.key)
-    choosedRandomWord(e.key)
+    choosedRandomWord(e.key);
     winnerCase();
     decreasingLives();
   });
   $(".startBtn").click(function () {
     $(this).css("display", "none");
-   generateQuestions()
-  startAgain()
+    generateQuestions();
+    startAgain();
   });
-  $("#gameOver").click(function(){
-    score=0
+  $("#gameOver").click(function () {
+    score = 0;
     $(this).css("display", "none");
     $("#hangMan").css("display", "none");
-    // $(".container").empty();
-    $(".container").html("")
-    generateQuestions()
-    startAgain()
+    $(".container").html("");
+    generateQuestions();
+    startAgain();
     // location.reload()
-
-  })
+  });
 });

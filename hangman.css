@@ -45,14 +45,13 @@ body {
   font-family: "Righteous", cursive;
   transition: all 0.4s ease-in;
   z-index: 1000;
-  
 }
 .startBtn:hover {
   background-color: rgb(216, 211, 211);
   color: rgb(104, 102, 102);
   -webkit-box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
-    -moz-box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
-    box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
+  -moz-box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
+  box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
 }
 #hangMan {
   display: none;
@@ -243,7 +242,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   transition: 1s;
 }
-.select_content_p{
+.select_content_p {
   transition: 1s;
 }
 .words_container {
@@ -273,21 +272,20 @@ body {
   font-family: "Righteous", cursive;
   cursor: pointer;
   transition: all 0.4s ease-in;
-
 }
 .words_lists:hover {
   background-color: rgb(70, 67, 70);
   color: #fff;
-  -webkit-box-shadow: 0px 0px 26px 3px rgba(255,255,255,1);
-  -moz-box-shadow: 0px 0px 26px 3px rgba(255,255,255,1);
-  box-shadow: 0px 0px 26px 3px rgba(255,255,255,1);
+  -webkit-box-shadow: 0px 0px 26px 3px rgba(255, 255, 255, 1);
+  -moz-box-shadow: 0px 0px 26px 3px rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 26px 3px rgba(255, 255, 255, 1);
 }
 .letters {
   width: 415px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 30px auto 18px auto
+  margin: 30px auto 18px auto;
 }
 .alphabet_btns {
   border-radius: 5px;
@@ -347,8 +345,8 @@ body {
   background-color: rgb(216, 211, 211);
   color: rgb(104, 102, 102);
   -webkit-box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
-    -moz-box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
-    box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
+  -moz-box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
+  box-shadow: 0px 0px 54px 0px rgb(250, 250, 248);
 }
 .fas {
   margin-left: 5px;
